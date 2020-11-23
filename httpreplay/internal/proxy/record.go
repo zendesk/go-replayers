@@ -135,6 +135,18 @@ func newProxy(filename, c, k string) (*Proxy, error) {
 	}
 	mproxy := martian.NewProxy()
 	mproxy.SetMITM(config)
+	// XXX Avoid sourcing proxy e.g. HTTP_PROXY from environment in the MITM
+	// proxy's transport, this is a zendesk customisation. This is done to
+	// prevent the request loop. The http.Transport{...} is copied from martian/proxy.go
+	// with Proxy struct member omitted.
+	roundTripper := &http.Transport{
+		// TODO(adamtanner): This forces the http.Transport to not upgrade requests
+		// to HTTP/2 in Go 1.6+. Remove this once Martian can support HTTP/2.
+		TLSNextProto:          make(map[string]func(string, *tls.Conn) http.RoundTripper),
+		TLSHandshakeTimeout:   10 * time.Second,
+		ExpectContinueTimeout: time.Second,
+	}
+	mproxy.SetRoundTripper(roundTripper)
 	return &Proxy{
 		mproxy:        mproxy,
 		CACert:        cert,
