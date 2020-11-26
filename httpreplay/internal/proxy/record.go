@@ -13,8 +13,8 @@
 // limitations under the License.
 
 // Package proxy provides a record/replay HTTP proxy. It is designed to support
-// both an in-memory API (github.com/google/go-replayers/httpreplay) and a standalone server
-// (github.com/google/go-replayers/httpreplay/cmd/httpr).
+// both an in-memory API (github.com/zendesk/go-replayers/httpreplay) and a standalone server
+// (github.com/zendesk/go-replayers/httpreplay/cmd/httpr).
 package proxy
 
 // See github.com/google/martian/cmd/proxy/main.go for the origin of much of this.
@@ -126,7 +126,7 @@ func newProxy(filename, c, k string) (*Proxy, error) {
 		config, configErr = mitm.NewConfig(x509c, priv)
 		if config != nil {
 			config.SetValidity(100 * time.Hour)
-			config.SetOrganization("github.com/google/go-replayers/httpreplay")
+			config.SetOrganization("github.com/zendesk/go-replayers/httpreplay")
 			config.SkipTLSVerify(false)
 		}
 	})
@@ -170,7 +170,7 @@ func customCert(cert, key string) (*x509.Certificate, interface{}, error) {
 }
 
 func autoGenCert() (*x509.Certificate, interface{}, error) {
-	return mitm.NewAuthority("github.com/google/go-replayers/httpreplay", "HTTPReplay Authority", 100*time.Hour)
+	return mitm.NewAuthority("github.com/zendesk/go-replayers/httpreplay", "HTTPReplay Authority", 100*time.Hour)
 }
 
 func (p *Proxy) start(port int) error {

@@ -34,8 +34,8 @@ import (
 
 	"cloud.google.com/go/storage"
 	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-replayers/httpreplay"
-	googlec "github.com/google/go-replayers/httpreplay/google"
+	"github.com/zendesk/go-replayers/httpreplay"
+	googlec "github.com/zendesk/go-replayers/httpreplay/google"
 	googleo "golang.org/x/oauth2/google"
 	"google.golang.org/api/option"
 )

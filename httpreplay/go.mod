@@ -1,4 +1,4 @@
-module github.com/google/go-replayers/httpreplay
+module github.com/zendesk/go-replayers/httpreplay
 
 go 1.12
 

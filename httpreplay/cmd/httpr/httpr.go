@@ -30,7 +30,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/google/go-replayers/httpreplay/internal/proxy"
+	"github.com/zendesk/go-replayers/httpreplay/internal/proxy"
 	"github.com/google/martian/martianhttp"
 )
 

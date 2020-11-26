@@ -1,4 +1,4 @@
-module github.com/google/go-replayers/grpcreplay
+module github.com/zendesk/go-replayers/grpcreplay
 
 go 1.12
 
